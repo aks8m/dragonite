@@ -7,4 +7,245 @@
     <groupId>dev.aks8m.tcg</groupId>
     <artifactId>dragonite</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>Dragonite: An Open-Source TCG Web Application</name>
+
+    <description>An Open-Source web application geared to help manage tcg collections</description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>aks8m</id>
+            <name>Andrew Sills</name>
+            <email>andrew.k.sills@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/aks8m/dragonite</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/aks8m/dragonite/issues</url>
+    </issueManagement>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <!-- Spring -->
+        <spring-boot.version>3.5.5</spring-boot.version>
+        <thymeleaf-layout-dialect.version>3.4.0</thymeleaf-layout-dialect.version>
+        <htmx-spring-boot-thymeleaf.version>4.0.1</htmx-spring-boot-thymeleaf.version>
+
+        <!-- Misc -->
+        <jboss-threads.version>3.9.1</jboss-threads.version>
+        <mapdb.version>3.1.0</mapdb.version>
+
+        <!-- Pokemon Stuff -->
+        <tcgdex.version>v2.0.2</tcgdex.version>
+
+        <!-- Logging -->
+        <slf4j.version>2.0.17</slf4j.version>
+
+        <!-- Maven Properties -->
+        <skipITs>true</skipITs>
+
+        <!-- Project Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Java and Maven versions -->
+        <java.version>25</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.version>4.0</maven.version>
+
+        <!-- Clean Lifecycle -->
+        <maven.clean-plugin.version>3.4.1</maven.clean-plugin.version>
+
+        <!-- POM Lifecycle -->
+        <maven.plugin-plugin.version>3.15.1</maven.plugin-plugin.version>
+        <maven.install-plugin.version>3.1.4</maven.install-plugin.version>
+        <maven.deploy-plugin.version>3.1.4</maven.deploy-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>nz.net.ultraq.thymeleaf</groupId>
+                <artifactId>thymeleaf-layout-dialect</artifactId>
+                <version>${thymeleaf-layout-dialect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.wimdeblauwe</groupId>
+                <artifactId>htmx-spring-boot-thymeleaf</artifactId>
+                <version>${htmx-spring-boot-thymeleaf.version}</version>
+            </dependency>
+
+            <!-- Misc. -->
+            <dependency>
+                <groupId>org.jboss.threads</groupId>
+                <artifactId>jboss-threads</artifactId>
+                <version>${jboss-threads.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapdb</groupId>
+                <artifactId>mapdb</artifactId>
+                <version>${mapdb.version}</version>
+            </dependency>
+
+            <!-- Pokemon Stuff -->
+            <dependency>
+                <groupId>com.github.tcgdex</groupId>
+                <artifactId>java-sdk</artifactId>
+                <version>${tcgdex.version}</version>
+            </dependency>
+
+            <!-- Logging -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-bom</artifactId>
+                <version>${slf4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.wimdeblauwe</groupId>
+            <artifactId>htmx-spring-boot-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- Misc. -->
+        <dependency>
+            <groupId>org.jboss.threads</groupId>
+            <artifactId>jboss-threads</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapdb</groupId>
+            <artifactId>mapdb</artifactId>
+        </dependency>
+
+        <!-- Pokemon Stuff -->
+        <dependency>
+            <groupId>com.github.tcgdex</groupId>
+            <artifactId>java-sdk</artifactId>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Spring -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+
+                <!-- POM Lifecycle -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven.clean-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven.install-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven.deploy-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

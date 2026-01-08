@@ -1,0 +1,6 @@
+package dev.aks8m.dragonite.tcg.pokemon.set;
+
+public record PokemonSet(
+        int id,
+        String name) {
+}
