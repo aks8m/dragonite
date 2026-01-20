@@ -55,8 +55,8 @@
         <jboss-threads.version>3.9.1</jboss-threads.version>
         <mapdb.version>3.1.0</mapdb.version>
 
-        <!-- Pokemon Stuff -->
-        <tcgdex.version>v2.0.2</tcgdex.version>
+        <!-- Card Management -->
+        <eclipse-collections.version>13.0.0</eclipse-collections.version>
 
         <!-- Logging -->
         <slf4j.version>2.0.17</slf4j.version>
@@ -118,11 +118,11 @@
                 <version>${mapdb.version}</version>
             </dependency>
 
-            <!-- Pokemon Stuff -->
+            <!-- Card Management -->
             <dependency>
-                <groupId>com.github.tcgdex</groupId>
-                <artifactId>java-sdk</artifactId>
-                <version>${tcgdex.version}</version>
+                <groupId>org.eclipse.collections</groupId>
+                <artifactId>eclipse-collections</artifactId>
+                <version>${eclipse-collections.version}</version>
             </dependency>
 
             <!-- Logging -->
@@ -185,10 +185,11 @@
             <artifactId>mapdb</artifactId>
         </dependency>
 
-        <!-- Pokemon Stuff -->
+        <!-- Card Management -->
         <dependency>
-            <groupId>com.github.tcgdex</groupId>
-            <artifactId>java-sdk</artifactId>
+            <groupId>org.eclipse.collections</groupId>
+            <artifactId>eclipse-collections</artifactId>
+            <version>${eclipse-collections.version}</version>
         </dependency>
 
         <!-- Test -->
