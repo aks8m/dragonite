@@ -6,8 +6,8 @@ CREATE TABLE games
     name VARCHAR(255)        -- 'Pokemon'
 );
 
--- 2. SERIES (The New Middle Layer)
-CREATE TABLE series
+-- 2. SETS (The New Middle Layer)
+CREATE TABLE sets
 (
     id           SERIAL PRIMARY KEY,
     game_id      SMALLINT     NOT NULL REFERENCES games (id),
@@ -23,13 +23,13 @@ CREATE TABLE expansions
     id        SERIAL PRIMARY KEY,
 
     -- Now points to Series instead of directly to Game (usually)
-    series_id INTEGER      NOT NULL REFERENCES series (id),
+    set_id INTEGER      NOT NULL REFERENCES sets (id),
 
     code      VARCHAR(20)  NOT NULL, -- 'sv1', 'swsh12'
     name      VARCHAR(255) NOT NULL, -- 'Scarlet & Violet Base Set'
 
     -- Constraint: Codes must be unique within a series (or game)
-    UNIQUE (series_id, code)
+    UNIQUE (set_id, code)
 );
 
 -- 1. SERIES TABLE

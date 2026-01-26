@@ -1,7 +1,10 @@
 package dev.aks8m.dragonite.tcg;
 
+import dev.aks8m.dragonite.tcg.external.TCGDexClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.awt.desktop.SystemSleepEvent;
 
 @Service
 public class TCGService {
@@ -14,6 +17,10 @@ public class TCGService {
     }
 
     public void getPokemonSeries() {
-        tcgDexClient.get().get().uri("/sets").retrieve();
+
+        var series = tcgDexClient.series();
+        var sets = tcgDexClient.sets();
+
+        System.out.println("break");
     }
 }
